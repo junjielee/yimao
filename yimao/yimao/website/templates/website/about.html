@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+{% endblock css %}
+
+{% block main %}
+<section id="info-container">
+  <div id="product_contain">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a data-toggle="tab"  role="tab" href="#about">About</a></li>
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="product">
+        {% for intro in company.intro_list %}
+        <p class="intro-word-line">{{ intro }}</p>
+        {% endfor %}
+
+        <div class="about-img">
+        {% for img in company.img_list %}
+        <img class="display" src="{% static img %}" />
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock main %}
+
+{% block js %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+{% endblock js %}

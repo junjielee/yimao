@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+{% endblock css %}
+
+{% block main %}
+<section id="info-container">
+  <div id="product_contain">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a data-toggle="tab"  role="tab" href="#product">产品</a></li>
+      <li role="presentation"><a data-toggle="tab" role="tab" href="#parm">参数</a></li>
+      <li role="presentation"><a data-toggle="tab" role="tab" href="#package">细节</a></li>
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="product">
+        {% for r in product.detail_index_imgs %}
+        <img class="display-{{ r.0 }}" src="{% static r.1 %}" />
+        {% endfor %}
+      </div>
+      <div role="tabpanel" class="tab-pane" id="parm">
+        {% for r in product.detail_arg_imgs %}
+        <img class="display" src="{% static r %}" />
+        {% endfor %}
+      </div>
+      <div role="tabpanel" class="tab-pane" id="package">
+        {% for r in product.detail_detail_imgs %}
+        <img class="display-main" src="{% static r %}" />
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock main %}
+
+{% block js %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+{% endblock js %}

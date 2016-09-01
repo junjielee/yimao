@@ -1,0 +1,52 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YiMao Electronic</title>
+
+  {% block css %}
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  {% endblock css %}
+
+</head>
+<body>
+  {% block nav %}
+  <nav id="navbar_banner">
+    <div class="img-container">
+      <a href="{% url 'index' %}">
+        <img src="{% static 'img/logo.png' %}"/>
+      </a>
+    </div>
+    <ul>
+      <li><a href="{% url 'index' %}">Products</a></li>
+      <li><a href="{% url 'about' %}">About</a></li>
+    </ul>
+  </nav>
+  {% endblock nav %}
+
+  {% block main %}
+  {% endblock main %}
+
+  {% block contact %}
+  <div id="contact">
+    <div class="contact-text">
+      <h2 class="contact-title">Contact Us</h2>
+      <div class="contact-content">
+        <p><span>Address:</span>&nbsp Yimao Industrial Park No.89 Wenfa Road Tung Chung Town Nansha District Guangzhou City</p>
+        <p><span>Mobile:</span>&nbsp +86 13160806722</p>
+        <p><span>Whatsapp:</span>&nbsp +86 13160806722</p>
+        <p><span>Skype:</span>&nbsp Samantha</p>
+        <p><span>Email:</span>&nbsp Samantha@xx.gmail.com</p>
+      </div>
+    </div>
+  </div>
+  {% endblock contact %}
+
+  {% block js %}
+  <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  {% endblock js %}
+</body>
