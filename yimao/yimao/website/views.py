@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render
 from django.views.generic import View
 
@@ -11,8 +14,25 @@ class IndexView(View):
     template_name = "website/index.html"
 
     def get(self, request):
-        products = Product.objects.all()
+        products = Product.objects.filter(is_main=True)
         context = {"products": products}
+        return render(request, self.template_name, context)
+
+
+class ProductsView(View):
+    template_name = "website/products.html"
+
+    def get(self, request):
+        products = Product.objects.all()
+        length = len(products)
+        mod = length % 3
+        len_new_list = length / 3
+        if mod != 0:
+            len_new_list += 1
+        new_list = [[]] * len_new_list
+        for i in range(len_new_list):
+            new_list.append(products[i * 3: (i + 1) * 3])
+        context = {"products": new_list}
         return render(request, self.template_name, context)
 
 

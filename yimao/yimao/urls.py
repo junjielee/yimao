@@ -20,11 +20,13 @@ from yimao.website.views import (
     IndexView,
     ProductDetailView,
     AboutView,
+    ProductsView,
 )
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', IndexView.as_view(), name="index"),
+    url(r'^products$', ProductsView.as_view(), name="products"),
     url(r'^products/(?P<pid>\d+)$', ProductDetailView.as_view(), name="product_detail"),
     url(r'^about$', AboutView.as_view(), name="about"),
 ]

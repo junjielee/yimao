@@ -4,6 +4,12 @@
 {% block css %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+<style type="text/css" media="all">
+.main-product {
+  display: inline-block;
+  height: 500px;
+}
+</style>
 {% endblock css %}
 
 {% block main %}
@@ -17,7 +23,7 @@
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="product">
         {% for r in product.detail_index_imgs %}
-        <img class="display-{{ r.0 }}" src="{% static r.1 %}" />
+        <img class="main-product" src="{% static r.1 %}" />
         {% endfor %}
       </div>
       <div role="tabpanel" class="tab-pane" id="parm">

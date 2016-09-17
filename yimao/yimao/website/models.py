@@ -6,10 +6,11 @@ from django.db import models
 class Product(models.Model):
     name = models.CharField(default="", max_length=32)
     intro = models.TextField(default="", max_length=256)
-    img_index = models.CharField(default="", max_length=64)
-    img_detail_index = models.TextField(default="", max_length=256)
-    img_detail_arg = models.TextField(default="", max_length=256)
-    img_detail_detail = models.TextField(default="", max_length=256)
+    img_index = models.CharField(default="", max_length=64, blank=True)
+    img_detail_index = models.TextField(default="", max_length=256, blank=True)
+    img_detail_arg = models.TextField(default="", max_length=256, blank=True)
+    img_detail_detail = models.TextField(default="", max_length=256, blank=True)
+    is_main = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
@@ -23,7 +24,8 @@ class Product(models.Model):
         img_paths = self.img_detail_index.split("\r\n")
         r = []
         for img in img_paths:
-            r.append((img.split(".")[0], "img/products/" + self.name + "/" + img))
+            if img != "":
+                r.append((img.split(".")[0], "img/products/" + self.name + "/" + img))
         return r
 
     @property
@@ -31,7 +33,8 @@ class Product(models.Model):
         img_paths = self.img_detail_arg.split("\r\n")
         r = []
         for img in img_paths:
-            r.append("img/products/" + self.name + "/" + img)
+            if img != "":
+                r.append("img/products/" + self.name + "/" + img)
         return r
 
     @property
@@ -39,7 +42,8 @@ class Product(models.Model):
         img_paths = self.img_detail_detail.split("\r\n")
         r = []
         for img in img_paths:
-            r.append("img/products/" + self.name + "/" + img)
+            if img != "":
+                r.append("img/products/" + self.name + "/" + img)
         return r
 
 
